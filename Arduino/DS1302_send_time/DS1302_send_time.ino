@@ -42,7 +42,6 @@ void loop() {
   if (prevTime.equals(timeStr)) return;
   prevTime = timeStr;
 
-  Serial.print(rtc.getDateStr());
-  Serial.print(" ");
-  Serial.println(timeStr);
+  String dateStr = rtc.getDateStr();
+  Serial.println(dateStr + " " + timeStr);
 }
