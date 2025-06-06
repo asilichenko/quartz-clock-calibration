@@ -237,7 +237,7 @@ For example, in this article, we measured the ppm deviation using three known ca
 
 When testing the unknown capacitor, we got −40.7 ppm. This value falls between the results of the 10 pF and 22 pF capacitors and is much closer to the latter. Given the standard capacitor E-series — 10, 12, 15, 18, 22 — we can reasonably assume the unmarked capacitor has a nominal value of approximately 18 pF. 
 
-## References
+## Source Code
 
 - Arduino sketch: [DS1302_send_time.ino](Arduino/DS1302_send_time/DS1302_send_time.ino)
 - Poll time and calc ppm: [ppm_script.py](Python/ppm_script.py)
