@@ -23,6 +23,7 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.ticker import FuncFormatter
 
 PADDING = 0.05
 
@@ -65,7 +66,7 @@ COLOR_PALETTE = {
 }
 
 
-def read_csv(file_path, delimiter=';', skiprows=1) -> tuple:
+def read_csv(file_path, delimiter=';', skiprows=2) -> tuple:
     """
     Read a CSV file into two numpy arrays (assuming two columns).
 
@@ -202,5 +203,33 @@ def main():
     plt.show()
 
 
+def plot_single_measurement(file_name: str, label: str):
+    plot_data(plt, file_name, label=label, colors={RAW: 'gray', EMA: 'red', POLY: 'blue'})
+
+    # Set plot size:
+    fig = plt.gcf()
+    fig.set_size_inches(10, 6)
+
+    # Adjust line styles:
+    lines = plt.gca().get_lines()
+    lines[0].set_linestyle('--')
+    lines[0].set_linewidth('0.5')
+    lines[1].set_linewidth('0.5')
+
+    ax = plt.gca()
+    ax.yaxis.set_major_formatter(FuncFormatter(lambda x, pos: f'{x * 1000:.1f}'))  # y = delta in ms
+    ax.set_ylabel('Delta, ms')
+    ax.set_xlabel('Actual time, s')
+
+    plt.xlim([0, 600])
+    plt.axhline(y=0, color='gray', linewidth=3)
+    plt.grid(True)
+
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
+
+
 if __name__ == '__main__':
-    main()
+    # main()
+    plot_single_measurement('resources/10pf+2.3ppm.csv', '10pf')
