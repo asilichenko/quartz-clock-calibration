@@ -125,7 +125,7 @@ def update_plot(actual_time_arr, delta_raw_arr, delta_ema_arr, ppm, coeffs):
         fig_pmm.set_ydata(y_data)
         fig_pmm.set_label(f'{ppm:+.1f}ppm')
 
-    ax.legend(loc='upper left')
+    ax.legend(loc=LEGEND_LOC)
     ax.relim()  # Recompute the data limits
     ax.autoscale_view()
 
